@@ -13,8 +13,23 @@ $(document).ready(function(){
     var newColorBlock = $('<div>');  //Now I want to put something on the DOM, start by adding a div
     newColorBlock.css('background-color',colorArray[i]); //we are setting the background-color  property to the string at the corresponding index.
     newColorBlock.addClass('colorBlock'); //Add a class to the empty div - it gives height and width
+    newColorBlock.data('colorOfBlock', colorArray[i]);
     $('#colorBlockContainer').append(newColorBlock); //Add the div to the DOM
   }
+  $('#colorBlockContainer').on('click', '.colorBlock',function(){
+    console.log('colorBlock was clicked'); //log if it was clicked
+    console.log('$(this): ',$(this));
+    console.log('$(this).data.colorOfBlock ', $(this).data().colorOfBlock);
+    var colorOfBlockSelected = $(this).data().colorOfBlock;
+    if(randomColor == colorOfBlockSelected){
+      console.log('yep, they got it');
+      $('#responseSection').text('You got it!');
+    } else {
+      $('#responseSection').text('Oh no...that is not right');
+
+    }
+  });
+
 
   // select a random color and add it to the DOM
   var randomNumberSelected = randomNumber(0, colorArray.length - 1); //the length is one greater than the last item's index
