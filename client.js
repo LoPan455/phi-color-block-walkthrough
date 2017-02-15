@@ -1,10 +1,10 @@
 $(document).ready(function(){
   console.log('jQuery is ready to go!'); //log to say we're ready
-  var colorArray = ['AliceBlue','AntiqueWhite','Aqua','Aquamarine']; //create a sample array of colors to populate
-  var newColorBlock = $('<div>');  //Now I want to put something on the DOM, start by adding a div
-  newColorBlock.css('background-color','red'); //hardcode the color for now.  using <variable>.css was not understood.This is one of the first places I got tripped up
-  newColorBlock.addClass('colorBlock'); //Add a class to the empty div - it gives height and width
-  $('#colorBlockContainer').append(newColorBlock); //Add the div to the DOM
+  var colorArray = ['AliceBlue','AntiqueWhite','Aqua','Aquamarine','Black','Orange']; //create a sample array of colors to populate
+  // var newColorBlock = $('<div>');  //Now I want to put something on the DOM, start by adding a div
+  // newColorBlock.css('background-color','red'); //hardcode the color for now.  using <variable>.css was not understood.This is one of the first places I got tripped up
+  // newColorBlock.addClass('colorBlock'); //Add a class to the empty div - it gives height and width
+  // $('#colorBlockContainer').append(newColorBlock); //Add the div to the DOM
 
   //adding a new blocks..you could copy/pasta lines 4-7 all day long, but doesn't
   //a loop sound like a better idea?
@@ -16,7 +16,16 @@ $(document).ready(function(){
     $('#colorBlockContainer').append(newColorBlock); //Add the div to the DOM
   }
 
-
-
+  // select a random color and add it to the DOM
+  var randomNumberSelected = randomNumber(0, colorArray.length - 1); //the length is one greater than the last item's index
+  var randomColor = colorArray[randomNumberSelected]; //then grab the color at the random index number
+  $('#userColorPrompt').text(randomColor);
 
 });
+
+
+//functions
+
+function randomNumber(min, max){
+  return Math.floor(Math.random() * (1 + max - min) + min);
+}
